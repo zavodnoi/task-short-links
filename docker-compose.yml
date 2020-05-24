@@ -29,8 +29,6 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - shortlinkmysql:/var/lib/mysql
-      # - ./docker/mysql/conf.d:/etc/mysql/conf.d
-      # - ./docker/mysql/logs:/var/log/mysql
     networks:
       - shortlink
 networks:
@@ -38,6 +36,4 @@ networks:
     driver: bridge
 volumes:
   shortlinkmysql:
-    driver: "local"
-  shortlinkredis:
     driver: "local"
