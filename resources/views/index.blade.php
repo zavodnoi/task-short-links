@@ -16,12 +16,37 @@
           <input type="text" class="form-control" name="link" placeholder="Ваша ссылка" value="{{old('link')}}">
         </div>
         <div class="col-lg-2 col-md-12 mb-1">
-          <input type="text" class="form-control" name="expired_at" placeholder="Срок жизни" value="{{old('expired_at')}}">
+          <input type="text" class="form-control" name="expired_at" placeholder="Срок жизни"
+                 value="{{old('expired_at')}}">
         </div>
         <div class="col-lg-3 col-md-12 text-lg-left text-right">
           <button type="submit" class="btn btn-primary">Создать</button>
         </div>
       </div>
     </form>
+    @if($shortLinkList->count())
+      <table class="table table-striped mt-2">
+        <thead>
+        <tr>
+          <th>Исходная ссылка</th>
+          <th>Короткая ссылка</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($shortLinkList as $shortLink)
+          <tr>
+            <td>{{$shortLink->link}}</td>
+            <td>{{url($shortLink->code)}}</td>
+            <td>
+              <a class="btn btn-outline-dark" href="{{route('statistic', $shortLink->code)}}">
+                Статистика
+              </a>
+            </td>
+          </tr>
+        @endforeach
+        </tbody>
+      </table>
+    @endif
   </div>
 @endsection
