@@ -18,7 +18,7 @@ class CreateShortLinksTable extends Migration
             $table->string('session_id');
             $table->string('link');
             $table->string('code');
-            $table->timestamp('expired_at');
+            $table->timestamp('expired_at')->nullable(true);
             $table->timestamps();
 
             $table->foreign('session_id')->references('id')->on('sessions');
