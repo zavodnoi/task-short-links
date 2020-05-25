@@ -12,5 +12,6 @@
 */
 Route::get('/', 'ShortLinkController@index')->name('index');
 Route::post('/', 'ShortLinkController@store')->name('store');
-Route::get('/{shortLink:code}', 'ShortLinkController@statistic')->name('statistic');
+Route::get('/{shortLink}', 'ShortLinkController@redirect')->name('redirect');
+Route::get('/{shortLink}/statistic', 'ShortLinkController@statistic')->name('statistic');
 

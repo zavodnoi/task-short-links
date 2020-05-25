@@ -23,12 +23,17 @@ class ShortLinkController extends Controller
         $shortLinkData['code'] = Str::random(10);
         $shortLinkData['session_id'] = Session::getId();
         $shortLink->fill($shortLinkData)->save();
-        
+
         return redirect('/');
     }
 
     public function statistic(ShortLink $shortLink)
     {
         return view('statistic', compact('shortLink'));
+    }
+
+    public function redirect(ShortLink $shortLink)
+    {
+        return redirect()->to($shortLink->link);
     }
 }
