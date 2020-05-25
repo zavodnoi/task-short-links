@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'ShortLinkController@index')->name('index');
+Route::post('/', 'ShortLinkController@store')->name('store');
+Route::get('/{shortLink:code}', 'ShortLinkController@statistic')->name('statistic');
 
-Route::get('/', function () {
-    return view('welcome');
-});
