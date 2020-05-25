@@ -13,10 +13,10 @@
       {!! csrf_field() !!}
       <div class="row">
         <div class="col-lg-5 offset-lg-2 col-md-12 mb-1">
-          <input type="text" class="form-control" name="link" placeholder="Ваша ссылка">
+          <input type="text" class="form-control" name="link" placeholder="Ваша ссылка" value="{{old('link')}}">
         </div>
         <div class="col-lg-2 col-md-12 mb-1">
-          <input type="text" class="form-control" name="expired_at" placeholder="Срок жизни">
+          <input type="text" class="form-control" name="expired_at" placeholder="Срок жизни" value="{{old('expired_at')}}">
         </div>
         <div class="col-lg-3 col-md-12 text-lg-left text-right">
           <button type="submit" class="btn btn-primary">Создать</button>
