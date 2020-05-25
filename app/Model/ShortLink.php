@@ -19,5 +19,13 @@ class ShortLink extends Model
         return $this->where('session_id', Session::getId())->get();
     }
 
-
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'code';
+    }
 }
