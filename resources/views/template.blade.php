@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 </head>
-<body class="p-5">
-<div class="container text-center">
+<body class="p-lg-5 p-md-4 p-sm-1">
+<div class="container">
     @yield('content')
 </div>
 <script src="{{asset('js/app.js')}}"></script>
