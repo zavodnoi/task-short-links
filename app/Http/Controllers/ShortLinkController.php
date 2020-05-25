@@ -12,7 +12,9 @@ class ShortLinkController extends Controller
 {
     public function index(ShortLink $shortLink)
     {
-        return view('index');
+        $shortLinkList = $shortLink->getList();
+
+        return view('index', compact('shortLinkList'));
     }
 
     public function store(StoreShortLink $request, ShortLink $shortLink)
