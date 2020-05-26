@@ -51,8 +51,9 @@ COPY promo.conf /etc/nginx/sites-available/promo.conf
 COPY php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 COPY xdebug.ini /etc/php/7.3/mods-available/xdebug.ini
 COPY app.ini /etc/php/7.3/fpm/conf.d/99-app.ini
-COPY localhost.crt /etc/nginx/default_ssl.crt
-COPY localhost.key /etc/nginx/default_ssl.key
+COPY browscap.ini /etc/php/7.3/mods-available/browscap.ini
+
+RUN echo 'browscap=/etc/php/7.3/mods-available/browscap.ini' >> /etc/php/7.3/fpm/php.ini
 
 EXPOSE 80
 
