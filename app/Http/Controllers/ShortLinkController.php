@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreShortLink;
 use App\Model\ShortLink;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -34,6 +35,14 @@ class ShortLinkController extends Controller
 
     public function redirect(ShortLink $shortLink)
     {
+        $shortLink->clickthroughs()->create([
+            'visited_at' => Carbon::now(),
+            'city'       => '',
+            'country'    => '',
+            'browser'    => '',
+            'os'         => '',
+        ]);
+
         return redirect()->to($shortLink->link);
     }
 }
