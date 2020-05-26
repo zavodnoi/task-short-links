@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreShortLink;
 use App\Model\ShortLink;
+use App\Services\BrowserDetailService;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -32,17 +34,20 @@ class ShortLinkController extends Controller
     {
         $clickthroughList = $shortLink->clickthroughs()->get();
 
-        return view('statistic', compact('shortLink','clickthroughList'));
+        return view('statistic', compact('shortLink', 'clickthroughList'));
     }
 
-    public function redirect(ShortLink $shortLink)
+    public function redirect(ShortLink $shortLink, Request $request)
     {
+        $userAgent = $request->header('User-Agent');
+        $browserDetailService = new BrowserDetailService($userAgent);
+
         $shortLink->clickthroughs()->create([
             'visited_at' => Carbon::now(),
             'city'       => '',
             'country'    => '',
-            'browser'    => '',
-            'os'         => '',
+            'browser'    => $browserDetailService->getBrowser(),
+            'os'         => $browserDetailService->getOS(),
         ]);
 
         return redirect()->to($shortLink->link);
