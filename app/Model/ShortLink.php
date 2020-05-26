@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Session;
 
 class ShortLink extends Model
@@ -24,8 +25,16 @@ class ShortLink extends Model
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'code';
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function clickthroughs(): HasMany
+    {
+        return $this->hasMany(Clickthrough::class);
     }
 }
