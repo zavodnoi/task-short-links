@@ -30,7 +30,9 @@ class ShortLinkController extends Controller
 
     public function statistic(ShortLink $shortLink)
     {
-        return view('statistic', compact('shortLink'));
+        $clickthroughList = $shortLink->clickthroughs()->get();
+
+        return view('statistic', compact('shortLink','clickthroughList'));
     }
 
     public function redirect(ShortLink $shortLink)
