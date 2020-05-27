@@ -40,6 +40,10 @@ class ShortLinkController extends Controller
 
     public function redirect(ShortLink $shortLink, Request $request)
     {
+        if ($shortLink->lifetimeExpired) {
+            abort(404);
+        }
+
         $userAgent = $request->header('User-Agent');
         $clientIp = $request->getClientIp();
 
