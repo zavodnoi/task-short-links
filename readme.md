@@ -1,3 +1,4 @@
+# Инструкция по развертке проекта
 1. Устанавливаем [Docker](https://www.docker.com/community-edition). 
 1. Клонируем репозиторий: `git clone https://github.com/zavodnoi/task-short-links.git`
 1. Переходим в папку проекта: `cd task-short-links`
@@ -7,6 +8,7 @@
 1. Устанавливаем зависимости: `docker-compose exec app composer install`
 1. Генерируем ключ приложения: `docker-compose exec app php artisan key:generate`
 1. Выполняем миграции: `docker-compose exec app php artisan migrate`
+1. Вводим адрес http://localhost:8100 в адресной строке браузера
 1. Выключаем проект: `docker-compose down`
 
 # Задание от Admitad
