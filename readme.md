@@ -4,9 +4,9 @@
 1. Копируем .env.example в .env: `cp .env.example .env`
 1. Устанавливаем переменную IDUSER=$UID: `sed -i '' -e "s/IDUSER=/IDUSER=$UID/g" .env`
 1. Поднимаем сервис Docker: `docker-compose up -d`
-1. Устанавливаем зависимости: `docker-compose up exec app composer install`
-1. Генерируем ключ приложения: `docker-compose up exec app php artisan key:generate`
-1. Выполняем миграции: `docker-compose up exec app php artisan migrate`
+1. Устанавливаем зависимости: `docker-compose exec app composer install`
+1. Генерируем ключ приложения: `docker-compose exec app php artisan key:generate`
+1. Выполняем миграции: `docker-compose exec app php artisan migrate`
 1. Выключаем проект: `docker-compose down`
 
 # Задание от Admitad
