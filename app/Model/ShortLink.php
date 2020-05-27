@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class ShortLink
+ * @package App\Model
+ *
+ * @property Carbon $expired_at
+ * @property bool $lifetimeExpired
+ */
 class ShortLink extends Model
 {
     protected $guarded = ['id'];
@@ -21,11 +28,22 @@ class ShortLink extends Model
         return $this->where('session_id', Session::getId())->get();
     }
 
-    public function setExpiredAtAttribute($date)
+    /**
+     * @param $date
+     */
+    public function setExpiredAtAttribute($date): void
     {
         if (!is_null($date)) {
             $this->attributes['expired_at'] = Carbon::parse($date)->format('Y-m-d');
         }
+    }
+
+    /**
+     * @return bool
+     */
+    public function getLifetimeExpiredAttribute(): bool
+    {
+        return !is_null($this->expired_at) && $this->expired_at->lessThan(Carbon::now());
     }
 
     /**
