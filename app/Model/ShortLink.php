@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,6 +19,13 @@ class ShortLink extends Model
     public function getList(): Collection
     {
         return $this->where('session_id', Session::getId())->get();
+    }
+
+    public function setExpiredAtAttribute($date)
+    {
+        if (!is_null($date)) {
+            $this->attributes['expired_at'] = Carbon::parse($date)->format('Y-m-d');
+        }
     }
 
     /**
