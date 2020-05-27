@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreShortLink;
 use App\Model\ShortLink;
 use App\Services\BrowserDetailService;
+use App\Services\LocationInfoService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -40,12 +41,15 @@ class ShortLinkController extends Controller
     public function redirect(ShortLink $shortLink, Request $request)
     {
         $userAgent = $request->header('User-Agent');
+        $clientIp = $request->getClientIp();
+
         $browserDetailService = new BrowserDetailService($userAgent);
+        $locationInfoService = new LocationInfoService($clientIp);
 
         $shortLink->clickthroughs()->create([
             'visited_at' => Carbon::now(),
-            'city'       => '',
-            'country'    => '',
+            'city'       => $locationInfoService->getCity(),
+            'country'    => $locationInfoService->getCountry(),
             'browser'    => $browserDetailService->getBrowser(),
             'os'         => $browserDetailService->getOS(),
         ]);
