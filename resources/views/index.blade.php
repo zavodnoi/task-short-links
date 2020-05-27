@@ -16,7 +16,7 @@
           <input type="text" class="form-control" name="link" placeholder="Ваша ссылка" value="{{old('link')}}">
         </div>
         <div class="col-lg-2 col-md-12 mb-1">
-          <input type="text" class="form-control" name="expired_at" placeholder="Срок жизни"
+          <input type="text" class="form-control" name="expired_at" placeholder="истечет (дд.мм.гггг)"
                  value="{{old('expired_at')}}">
         </div>
         <div class="col-lg-3 col-md-12 text-lg-left text-right">
@@ -30,6 +30,7 @@
         <tr>
           <th>Исходная ссылка</th>
           <th>Короткая ссылка</th>
+          <th>Истекает</th>
           <th></th>
         </tr>
         </thead>
@@ -38,6 +39,11 @@
           <tr>
             <td>{{$shortLink->link}}</td>
             <td>{{url($shortLink->code)}}</td>
+            <td>
+              @isset($shortLink->expired_at)
+                {{$shortLink->expired_at->format('d.m.Y')}}
+              @endisset
+            </td>
             <td>
               <a class="btn btn-outline-dark" href="{{route('statistic', $shortLink->code)}}">
                 Статистика
