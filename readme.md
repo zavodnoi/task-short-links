@@ -3,7 +3,7 @@
 1. Клонируем репозиторий: `git clone https://github.com/zavodnoi/task-short-links.git`
 1. Переходим в папку проекта: `cd task-short-links`
 1. Копируем .env.example в .env: `cp .env.example .env`
-1. Устанавливаем переменную IDUSER=$UID: `sed -i '' -e "s/IDUSER=/IDUSER=$UID/g" .env`
+1. Устанавливаем переменную IDUSER=$UID: для macOS -> `sed -i '' -e "s/IDUSER=/IDUSER=$UID/g" .env` для GNU -> `sed -i  "s/IDUSER=/IDUSER=$UID/g" .env`
 1. Поднимаем сервис Docker: `docker-compose up -d`
 1. Устанавливаем зависимости: `docker-compose exec app composer install`
 1. Генерируем ключ приложения: `docker-compose exec app php artisan key:generate`
