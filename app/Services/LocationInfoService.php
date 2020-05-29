@@ -50,7 +50,7 @@ class LocationInfoService implements LocationInfoInterface, ApiRequestInterface
     /**
      * @return array
      */
-    public function getLocationInfo(): array
+    protected function getLocationInfo(): array
     {
         if (empty($this->locationInfo)) {
             $this->sendRequest();
