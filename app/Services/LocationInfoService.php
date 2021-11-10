@@ -2,12 +2,11 @@
 
 namespace App\Services;
 
-use App\Contracts\ApiRequestInterface;
 use App\Contracts\LocationInfoInterface;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\App;
 
-class LocationInfoService implements LocationInfoInterface, ApiRequestInterface
+class LocationInfoService implements LocationInfoInterface
 {
     const API_URL  = 'https://freegeoip.app/json/';
     const LOCAL_IP = '188.123.231.1';
@@ -61,7 +60,7 @@ class LocationInfoService implements LocationInfoInterface, ApiRequestInterface
     /**
      * send request to API and set result to param locationInfo
      */
-    public function sendRequest(): void
+    protected function sendRequest(): void
     {
         $response = $this->httpClient->get($this::API_URL . $this->ip);
         $this->locationInfo = json_decode($response->getBody()->getContents(), true);
